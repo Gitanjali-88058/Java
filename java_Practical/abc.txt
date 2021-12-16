@@ -1,0 +1,95 @@
+//CASE 1: When class is public
+package P1; //this is package P1
+public class A1 { //this class is public
+public int x=4; //the variables are public too
+public int y=3;
+}
+package P1; //this is package P1
+public class A2 { //this is the main class of P1
+public static void main(String[] args) {
+A1 a=new A1();
+System.out.println(a.x+" "+a.y); //we can easily call the class in the same package as it is public
+}
+}
+package P2; //this is package P2
+import P1.A1; // A1 from P1 is imported
+public class A3 {
+public static void main(String ar[]) {
+A1 a = new A1();
+System.out.println(a.x+" "+a.y); //we can also easily access the class in a different package as it public
+}
+}
+//CASE 2: When Class is default-:
+package P1; //this is package P1
+class A1 { //this class is default
+public int x=4; //the variables are default too
+public int y=3;
+}
+package P1; //this is package P1
+class A2 {    //this is the main class of P1
+public static void main(String[] args) {
+A1 A=new A1();
+System.out.println(a.x+" "+a.y); //we can easily call the class in the same package as it is default
+}
+}
+package P2; //this is package P2
+import P1.A1; //ERROR // A1 cant be imported as it is not visible
+class A3 {
+public static void main(String ar[]) {
+A1 c = new A1(); //ERROR
+System.out.println(a.x+" "+a.y); //we can not access the class in
+a different package as it default
+}
+}
+//CASE 3: When Class is protected-:
+//We know top classes can not be defined as protected so we have made an inner class
+package P1;
+public class A1 {
+public int x=123;
+public int y=23;
+protected class A1x { //protected inner class
+int x1=24;
+}
+}
+package P1;
+public class A2{
+public static void main(String[] args) {
+ A1.A1x a = new A1().new A1x(); //the inner class can be easily
+accessed in the same package
+System.out.println(a.x1);
+}
+}
+package P2;
+import P1.A1;
+public class A3 {
+public static void main(String ar[]) {
+A1.A1x a = new A1().new A1x(); //ERROR
+//as the inner class is protected so it cannot be accessed in a different package
+}
+}
+//CASE 4: When Class is private-:
+//We know top classes can not be defined as private so we have made an inner class
+package P1;
+public class A1 {
+public int x=4;
+public int y=3;
+private class A1x{ //private inner class
+int x1=6;
+}
+}
+package P1;
+public class A2{
+public static void main(String[] args) {
+ A1.A1x a = new A1().new A1x(); //ERROR
+//the inner class cant accessed in the same package as it is private
+System.out.println(a.x1);
+}
+}
+package P2;
+import P1.A1;
+public class A3 {
+public static void main(String ar[]) {
+A1.A1 = new A1().new A1x(); //ERROR
+//as the inner class  is private so it cant be accessed in a different package
+}
+}
